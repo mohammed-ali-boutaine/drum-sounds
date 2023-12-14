@@ -1,10 +1,11 @@
 /*  
-        simple drum kit 
+    Simple Drum Kit
 */
-//get drums (buttons)
+
+// Get drum buttons from the document
 let drums = document.querySelectorAll(".drum");
 
-// create sound ojetcs
+// Create sound objects for each drum
 let audio1 = new Audio("./sounds/crash.mp3");
 let audio2 = new Audio("./sounds/kick-bass.mp3");
 let audio3 = new Audio("./sounds/snare.mp3");
@@ -13,8 +14,8 @@ let audio5 = new Audio("./sounds/tom-2.mp3");
 let audio6 = new Audio("./sounds/tom-3.mp3");
 let audio7 = new Audio("./sounds/tom-4.mp3");
 
-// put object in object based on a letter
-let objSoundes = {
+// Map drum letter to corresponding sound object
+let objSounds = {
   w: audio1,
   a: audio2,
   s: audio3,
@@ -24,78 +25,57 @@ let objSoundes = {
   i: audio7,
 };
 
-// create a function tat take letter and play sound
+// Function to play a sound based on the input letter
 function playSound(sound) {
-
   switch (sound) {
     case "w":
-      objSoundes.w.play();
-      AnimationListter(drums[0])
+      objSounds.w.play();
+      animateButton(drums[0]);
       break;
     case "a":
-      // audio2.play();
-      objSoundes.a.play();
-      AnimationListter(drums[1])
-
-
+      objSounds.a.play();
+      animateButton(drums[1]);
       break;
     case "s":
-      objSoundes.s.play();
-      AnimationListter(drums[2])
-
+      objSounds.s.play();
+      animateButton(drums[2]);
       break;
     case "d":
-      objSoundes.d.play();
-      AnimationListter(drums[3])
-
+      objSounds.d.play();
+      animateButton(drums[3]);
       break;
     case "j":
-      objSoundes.j.play();
-      AnimationListter(drums[4])
-
+      objSounds.j.play();
+      animateButton(drums[4]);
       break;
     case "k":
-      objSoundes.k.play();
-      AnimationListter(drums[5])
-
+      objSounds.k.play();
+      animateButton(drums[5]);
       break;
     case "i":
-      objSoundes.i.play();
-      AnimationListter(drums[6])
-
+      objSounds.i.play();
+      animateButton(drums[6]);
       break;
   }
 }
 
-
-// add eventListner click on all buttons 
-for (let i = 0; i < drums.length; i++) {  // loop through drums
-  drums[i].addEventListener("click", function(){
-    const drumLiter = this.innerHTML;
-    playSound(drumLiter)
+// Event listener for click on drum buttons
+for (let i = 0; i < drums.length; i++) {
+  drums[i].addEventListener("click", function () {
+    const drumLetter = this.innerHTML;
+    playSound(drumLetter);
   });
 }
 
+// Event listener for keydown (press on keyboard)
+document.addEventListener("keydown", function (e) {
+  playSound(e.key);
+});
 
-// add eventListner keydown (press on keyboard ) on all buttons 
-
-document.addEventListener("keydown",function(e){
-playSound(e.key)
-})
-
-
-
-
-
-
-
-//
-function AnimationListter(litter){
-
-
-  litter.style.opacity="0.8";
-  setTimeout(()=>{litter.style.opacity="1"},300)
+// Function to add animation to the pressed drum button
+function animateButton(button) {
+  button.style.opacity = "0.8";
+  setTimeout(() => {
+    button.style.opacity = "1";
+  }, 300);
 }
-
-
-
