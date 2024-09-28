@@ -22,7 +22,7 @@ let objSounds = {
   d: audio4,
   j: audio5,
   k: audio6,
-  i: audio7,
+  l: audio7,
 };
 
 // Function to play a sound based on the input letter
@@ -52,8 +52,8 @@ function playSound(sound) {
       objSounds.k.play();
       animateButton(drums[5]);
       break;
-    case "i":
-      objSounds.i.play();
+    case "l":
+      objSounds.l.play();
       animateButton(drums[6]);
       break;
   }
